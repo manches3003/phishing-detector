@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
+import { Analytics } from "@vercel/analytics/react"
 
 const API = "https://phishguard-api-puve.onrender.com";
 
@@ -302,89 +303,91 @@ export default function App() {
         </span>
       </div>
 
+      <Analytics />
+
       <style>{`
         * { box-sizing: border-box; }
-body { margin: 0; background: #04040a; }
-input::placeholder { color: #3a3650; }
-@keyframes blink {
-  0%,100%{ opacity:1; } 50%{ opacity:0.4; }
-}
+        body { margin: 0; background: #04040a; }
+        input::placeholder { color: #3a3650; }
+        @keyframes blink {
+        0%,100%{ opacity:1; } 50%{ opacity:0.4; }
+        }
 
-/* ── TABLET (max 960px) ── */
-@media(max-width:960px) {
-  div[style*="grid-template-columns: repeat(3"] {
-    grid-template-columns: 1fr !important;
-  }
-  div[style*="grid-template-columns: repeat(4"] {
-    grid-template-columns: 1fr 1fr !important;
-  }
-}
+       /* ── TABLET (max 960px) ── */
+       @media(max-width:960px) {
+         div[style*="grid-template-columns: repeat(3"] {
+           grid-template-columns: 1fr !important;
+         }
+         div[style*="grid-template-columns: repeat(4"] {
+          grid-template-columns: 1fr 1fr !important;
+         }
+       }
 
-/* ── MOBILE (max 640px) ── */
-@media(max-width:640px) {
-  /* Navbar */
-  nav { padding: 0 16px !important; height: 54px !important; }
-  nav > div:nth-child(3) { display: none !important; }
-  nav > div:last-child { padding: 4px 10px !important; }
-  nav > div:last-child span { font-size: 9px !important; }
+       /* ── MOBILE (max 640px) ── */
+       @media(max-width:640px) {
+         /* Navbar */
+         nav { padding: 0 16px !important; height: 54px !important; }
+         nav > div:nth-child(3) { display: none !important; }
+         nav > div:last-child { padding: 4px 10px !important; }
+         nav > div:last-child span { font-size: 9px !important; }
 
-  /* Hero section */
-  div[style*="padding: \"60px 48px"] { padding: 36px 16px 28px !important; }
-  div[style*="padding: \"0 48px"] { padding: 0 16px 40px !important; }
-  div[style*="margin: \"0 48px"] { margin: 0 16px 40px !important; }
+         /* Hero section */
+         div[style*="padding: \"60px 48px"] { padding: 36px 16px 28px !important; }
+         div[style*="padding: \"0 48px"] { padding: 0 16px 40px !important; }
+         div[style*="margin: \"0 48px"] { margin: 0 16px 40px !important; }
 
-  /* Title */
-  h1 { font-size: 26px !important; line-height: 1.2 !important; }
+         /* Title */
+         h1 { font-size: 26px !important; line-height: 1.2 !important; }
 
-  /* Description text */
-  p { font-size: 14px !important; }
+         /* Description text */
+         p { font-size: 14px !important; }
 
-  /* URL input — stack vertically */
-  div[style*="display: \"flex\", maxWidth: \"820px\""] {
-    flex-direction: column !important;
-    max-width: 100% !important;
-  }
-  div[style*="display: \"flex\", maxWidth: \"820px\""] button {
-    width: 100% !important;
-    padding: 14px !important;
-  }
+         /* URL input — stack vertically */
+         div[style*="display: \"flex\", maxWidth: \"820px\""] {
+           flex-direction: column !important;
+           max-width: 100% !important;
+         }
+         div[style*="display: \"flex\", maxWidth: \"820px\""] button {
+           width: 100% !important;
+           padding: 14px !important;
+         }
 
-  /* Sample URL buttons — stack */
-  div[style*="display: \"flex\", gap: \"8px\", justifyContent: \"center\""] {
-    flex-direction: column !important;
-    align-items: center !important;
-  }
+         /* Sample URL buttons — stack */
+         div[style*="display: \"flex\", gap: \"8px\", justifyContent: \"center\""] {
+           flex-direction: column !important;
+           align-items: center !important;
+         }
 
-  /* Results verdict banner */
-  div[style*="display: \"flex\", alignItems: \"center\", justifyContent: \"space-between\""] {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    padding: 24px 20px !important;
-  }
+         /* Results verdict banner */
+         div[style*="display: \"flex\", alignItems: \"center\", justifyContent: \"space-between\""] {
+           flex-direction: column !important;
+           align-items: flex-start !important;
+           padding: 24px 20px !important;
+         }
 
-  /* Stats grid — 1 column on very small */
-  div[style*="grid-template-columns: repeat(4"] {
-    grid-template-columns: 1fr 1fr !important;
-  }
+         /* Stats grid — 1 column on very small */
+         div[style*="grid-template-columns: repeat(4"] {
+           grid-template-columns: 1fr 1fr !important;
+         }
 
-  /* 3 column results */
-  div[style*="grid-template-columns: repeat(3"] {
-    grid-template-columns: 1fr !important;
-  }
+        /* 3 column results */
+          div[style*="grid-template-columns: repeat(3"] {
+            grid-template-columns: 1fr !important;
+          }
 
-  /* History grid */
-  div[style*="grid-template-columns: repeat(auto-fill"] {
-    grid-template-columns: 1fr !important;
-  }
-}
+          /* History grid */
+          div[style*="grid-template-columns: repeat(auto-fill"] {
+            grid-template-columns: 1fr !important;
+          }
+        }
 
-/* ── SMALL PHONES (max 380px) ── */
-@media(max-width:380px) {
-  h1 { font-size: 22px !important; }
-  div[style*="grid-template-columns: repeat(4"] {
-    grid-template-columns: 1fr !important;
-  }
-}
+        /* ── SMALL PHONES (max 380px) ── */
+        @media(max-width:380px) {
+          h1 { font-size: 22px !important; }
+          div[style*="grid-template-columns: repeat(4"] {
+            grid-template-columns: 1fr !important;
+          }
+        }
       `}</style>
     </div>
   );
