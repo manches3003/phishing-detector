@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
 
-const API = "http://localhost:5000";
+const API = "https://phishguard-api.onrender.com";
 
 const GaugeChart = ({ percentage, color }) => {
   const radius = 54;
